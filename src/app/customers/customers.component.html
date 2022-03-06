@@ -1,0 +1,202 @@
+<div class="container">
+    <h1>Customers</h1>
+    <br>
+    <button type="button" class="btn btn-primary float-end m-2" (click)="open(content)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+            class="bi bi-file-earmark-plus" viewBox="0 0 16 16">
+            <path
+                d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+            <path
+                d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z" />
+        </svg>Add Customer
+    </button>
+    <table class="table table-hover table-active border border-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Current Address</th>
+                <th scope="col">Permenant Address</th>
+                <th scope="col">Email</th>
+                <th scope="col">Mobile</th>
+                <th scope="col">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of customerList;let i =index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{data.first_name+" "+data.last_name}}</td>
+                <td>{{data.date_of_birth}}</td>
+                <td>
+                    <pre>{{data.current_address.houseno}}, {{data.current_address.street}}, 
+{{data.current_address.city}} - {{data.current_address.zipcode}}</pre>
+                </td>
+                <td>
+                    <pre>{{data.permenant_address.houseno}}, {{data.permenant_address.street}}, 
+{{data.permenant_address.city}} - {{data.permenant_address.zipcode}}</pre>
+                </td>
+                <td>{{data.email}}</td>
+                <td>{{data.phone_number}}</td>
+                <td>
+                    <button class="btn btn-warning" (click)="modifyData(content,data)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path
+                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                            <path fill-rule="evenodd"
+                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                        </svg>
+                    </button>
+                    <button class="btn btn-danger m-2" (click)="deletecustomerData(data)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-trash" viewBox="0 0 16 16">
+                            <path
+                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                            <path fill-rule="evenodd"
+                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                        </svg>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <form [formGroup]="customerForm" *ngIf="formtype" (ngSubmit)="addcustomerData(customerForm)">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Add Customer</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <input formControlName="id" type="hidden">
+            <div class="row m-0">
+                <div class="col-sm-6">
+                    <input formControlName="first_name" placeholder="Provide First Name" class="form-control mb-4">
+                </div>
+                <div class="col-sm-6">
+                    <input formControlName="last_name" placeholder="Provide Last Name" class="form-control">
+                </div>
+            </div>
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <label>Date of Birth</label>
+                    <input type="date" formControlName="date_of_birth" class="form-control mb-4 datepicker">
+                </div>
+                <div class="col-sm-4 mt-4">
+                    <input formControlName="email" placeholder="Provide Email" class="form-control mb-4">
+                </div>
+                <div class="col-sm-4 mt-4">
+                    <input formControlName="phone_number" placeholder="Provide Contact" class="form-control">
+                </div>
+            </div>
+            <label class="mt-1"> Current Address</label>
+            <div class="row m-0">
+                <div class="col-sm-3">
+                    <input formControlName="currrent_houseno" placeholder="Provide Last Name" class="form-control">
+                </div>
+                <div class="col-sm-3">
+                    <input formControlName="currrent_street" placeholder="Provide Last Name" class="form-control">
+                </div>
+                <div class="col-sm-3">
+                    <input formControlName="currrent_city" placeholder="Provide Last Name" class="form-control">
+                </div>
+                <div class="col-sm-3">
+                    <input formControlName="currrent_zipcode" placeholder="Provide Last Name" class="form-control">
+                </div>
+            </div> 
+            <!-- <div class="row m-3">
+                <div class="col-sm form-check">
+                    <input type="checkbox" formControlName="sameaddress" class="form-check-input" [checked]="checkme" (change)="change()"><label class="form-check-label" for="sameaddress"> Current Address and Permenant Address is Same.</label>
+                </div>
+            </div> -->
+            <label> Permenant Address</label>
+            <div class="row m-0">
+                <div class="col-sm-3">
+                    <input formControlName="permenant_houseno" placeholder="Provide Last Name" class="form-control">
+                </div>
+                <div class="col-sm-3">
+                    <input formControlName="permenant_street" placeholder="Provide Last Name" class="form-control">
+                </div>
+                <div class="col-sm-3">
+                    <input formControlName="permenant_city" placeholder="Provide Last Name" class="form-control">
+                </div>
+                <div class="col-sm-3">
+                    <input formControlName="permenant_zipcode" placeholder="Provide Last Name" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" type="submit" [disabled]="!customerForm.valid">Submit</button>
+        </div>
+    </form>
+
+    <form [formGroup]="customerForm" *ngIf="!formtype" (ngSubmit)="updatecustomerData(customerForm)">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">UpdateCustomer</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row m-0">
+                <input formControlName="id" type="hidden">
+                <div class="col-sm-6">
+                    <input formControlName="first_name" placeholder="Provide First Name" class="form-control mb-4">
+                </div>
+                <div class="col-sm-6">
+                    <input formControlName="last_name" placeholder="Provide Last Name" class="form-control">
+                </div>
+            </div>
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <label>Date of Birth</label>
+                    <input type="date" formControlName="date_of_birth" class="form-control mb-4 datepicker">
+                </div>
+                <div class="col-sm-4 mt-4">
+                    <input formControlName="email" placeholder="Provide Email" class="form-control mb-4">
+                </div>
+                <div class="col-sm-4 mt-4">
+                    <input formControlName="phone_number" placeholder="Provide Contact" class="form-control">
+                </div>
+            </div>
+            <label class="mt-1"> Current Address</label>
+            <div class="row m-0">
+                <div class="col-sm-3">
+                    <input formControlName="currrent_houseno" placeholder="Provide Last Name" class="form-control">
+                </div>
+                <div class="col-sm-3">
+                    <input formControlName="currrent_street" placeholder="Provide Last Name" class="form-control">
+                </div>
+                <div class="col-sm-3">
+                    <input formControlName="currrent_city" placeholder="Provide Last Name" class="form-control">
+                </div>
+                <div class="col-sm-3">
+                    <input formControlName="currrent_zipcode" placeholder="Provide Last Name" class="form-control">
+                </div>
+            </div> 
+            <!-- <div class="row m-3">
+                <div class="col-sm form-check">
+                    <input type="checkbox" formControlName="sameaddress" class="form-check-input" [checked]="checkme" (change)="change()"><label class="form-check-label" for="sameaddress"> Current Address and Permenant Address is Same.</label>
+                </div>
+            </div> -->
+            <label> Permenant Address</label>
+            <div class="row m-0">
+                <div class="col-sm-3">
+                    <input formControlName="permenant_houseno" placeholder="Provide Last Name" class="form-control">
+                </div>
+                <div class="col-sm-3">
+                    <input formControlName="permenant_street" placeholder="Provide Last Name" class="form-control">
+                </div>
+                <div class="col-sm-3">
+                    <input formControlName="permenant_city" placeholder="Provide Last Name" class="form-control">
+                </div>
+                <div class="col-sm-3">
+                    <input formControlName="permenant_zipcode" placeholder="Provide Last Name" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" type="submit" [disabled]="!customerForm.valid">Update</button>
+        </div>
+    </form>
+</ng-template>

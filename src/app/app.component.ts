@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CrudService } from './crud.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-homework';
+  logoimg = "https://angular.io/assets/images/logos/angular/logo-nav@2x.png";
+
+  constructor(public service:CrudService) { }
+  
+  logout(){
+    this.service.logout();
+    // window.location.reload();
+  }
 }
