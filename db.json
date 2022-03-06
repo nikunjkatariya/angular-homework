@@ -1,0 +1,131 @@
+{
+  "login_details": [
+    {
+      "id": 1,
+      "user_name": "admin",
+      "password": "admin123"
+    }
+  ],
+  "customer_details": [
+    {
+      "id": 1,
+      "first_name": "John",
+      "last_name": "Smith",
+      "date_of_birth": "1989-02-14",
+      "current_address": {
+        "houseno": "21",
+        "street": "2nd Street",
+        "city": "New York",
+        "zipcode": "10021"
+      },
+      "permenant_address": {
+        "houseno": "35",
+        "street": "8nd Street",
+        "city": "New York",
+        "zipcode": "10021"
+      },
+      "email": "Sincere@april.biz",
+      "phone_number": "2125551234"
+    },
+    {
+      "id": 2,
+      "first_name": "James",
+      "last_name": "Butterburg",
+      "date_of_birth": "1975-10-18",
+      "current_address": {
+        "houseno": "145",
+        "street": "2nd Street",
+        "city": "New York",
+        "zipcode": "10025"
+      },
+      "permenant_address": {
+        "houseno": "6649",
+        "street": "N Blue Gum St",
+        "city": "LA",
+        "zipcode": "70116"
+      },
+      "email": "Shanna@melissa.tv",
+      "phone_number": "17707368031"
+    },
+    {
+      "id": 3,
+      "first_name": "Josephine",
+      "last_name": "Darakjy",
+      "date_of_birth": "1992-05-30",
+      "current_address": {
+        "houseno": "4",
+        "street": "B Blue Ridge Blvd",
+        "city": "Brighton",
+        "zipcode": "48116"
+      },
+      "permenant_address": {
+        "houseno": "35",
+        "street": "8nd Street",
+        "city": "New York",
+        "zipcode": "10021"
+      },
+      "email": "Nathan@yesenia.net",
+      "phone_number": "0106926593"
+    },
+    {
+      "id": 4,
+      "first_name": "Art",
+      "last_name": "Chemel",
+      "date_of_birth": "5-1-1999",
+      "current_address": {
+        "houseno": "8",
+        "street": "W Cerritos Ave #54",
+        "city": "Bridgeport",
+        "zipcode": "08014"
+      },
+      "permenant_address": {
+        "houseno": "35",
+        "street": "8nd Street",
+        "city": "New York",
+        "zipcode": "10021"
+      },
+      "email": "Julianne.OConner@kory.org",
+      "phone_number": "14631234447"
+    },
+    {
+      "id": 14,
+      "first_name": "sad",
+      "last_name": "sa",
+      "date_of_birth": "2022-12-31",
+      "current_address": {
+        "houseno": "asdn",
+        "street": "kjnn",
+        "city": "jkn",
+        "zipcode": "j"
+      },
+      "permenant_address": {
+        "houseno": "nkj",
+        "street": "njk",
+        "city": "nkj",
+        "zipcode": "n"
+      },
+      "email": "asd@sad.com",
+      "phone_number": "789456132465"
+    },
+    {
+      "id": 46,
+      "first_name": "sadasdasd",
+      "last_name": "sa",
+      "date_of_birth": "2022-12-31",
+      "current_address": {
+        "houseno": "asdn",
+        "street": "kjnn",
+        "city": "jkn",
+        "zipcode": "j"
+      },
+      "permenant_address": {
+        "houseno": "nkj",
+        "street": "njk",
+        "city": "nkj",
+        "zipcode": "n"
+      },
+      "email": "asd@sad.com",
+      "phone_number": "789456132465"
+    }
+  ]
+}
